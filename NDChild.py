@@ -156,7 +156,8 @@ class NDChild(object):
 
             elif ((pIndex + O3Index) == 1):
                 #print("amb:",s.sentenceStr)
-                self.adjustweightConservatively("PI", 0)
+                #self.adjustweightConservatively("PI", 0)
+                self.adjustweight("PI", 0) #changed 1/11/21 to reflect PI is unambiguous
 
     def tmEtrigger(self, s):
         if "[+WA]" in s.sentenceStr:
@@ -360,7 +361,8 @@ class NDChild(object):
                 self.adjustweight("AH", 1)
                 self.adjustweight("VtoI", 0)
 
-        elif "Aux" in s.sentenceStr:
+        elif (s.inflection == "DEC" and "Aux" in s.sentenceStr)and ("Never" in s.sentenceStr or "Not" in s.sentenceStr) and "Verb" in s.sentenceStr and "O1" in s.sentenceStr):
+            #updated elif condition to reflect restricted set of sentences akin to set restriction above
             self.adjustweightConservatively("AH", 0)
             # if self.grammar["VtoI"] > 0.5: #If not affix hopping language, vtoi is either 0 or 1, but if evidence of vtoi towards 1 has alreadybeen observed, increase confidence 1VtoI given 0AH
             #   self.adjustweightConservatively("VtoI", 1)
