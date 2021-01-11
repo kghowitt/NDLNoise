@@ -361,7 +361,7 @@ class NDChild(object):
                 self.adjustweight("AH", 1)
                 self.adjustweight("VtoI", 0)
 
-        elif (s.inflection == "DEC" and "Aux" in s.sentenceStr)and ("Never" in s.sentenceStr or "Not" in s.sentenceStr) and "Verb" in s.sentenceStr and "O1" in s.sentenceStr):
+        elif (s.inflection == "DEC" and "Aux" in s.sentenceStr) and ("Never" in s.sentenceStr or "Not" in s.sentenceStr) and ("Verb" in s.sentenceStr and "O1" in s.sentenceStr):
             #updated elif condition to reflect restricted set of sentences akin to set restriction above
             self.adjustweightConservatively("AH", 0)
             # if self.grammar["VtoI"] > 0.5: #If not affix hopping language, vtoi is either 0 or 1, but if evidence of vtoi towards 1 has alreadybeen observed, increase confidence 1VtoI given 0AH
